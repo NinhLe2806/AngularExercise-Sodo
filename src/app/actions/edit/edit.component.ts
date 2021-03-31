@@ -32,19 +32,15 @@ export class EditComponent implements OnInit {
       this.dataAll= rs.result;;
       this.data=this.dataAll.filter(item=>item['id']==this.msg)
     })
-  }
-  
-  load(){
-    this.isLoad=true;
-    console.log(this.data[0])
-    this.formComponent.setFormDefault(this.formComponent.getFormDefault(),this.data[0])
-  }
 
-
+  }
+  ngAfterViewInit(){
+    this.formComponent.setFormData(this.data[0])
+  }
 
   onSubmit(){
+    console.log("dm")
     this.fakeData.updateData(this.msg,this.formComponent?.form.value)
-
     switch(this.formComponent?.form.controls['type'].value.toLowerCase( )){
       case 'agents': this.router.navigate(['/agents']);break;
       case  'guns': this.router.navigate(['/guns']);break;

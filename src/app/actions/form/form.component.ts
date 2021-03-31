@@ -44,6 +44,10 @@ export class FormComponent implements OnInit {
 
   }
 
+  setFormData(data:dataClass){
+    this.setFormDefault(this.form,data);
+  }
+
   ngOnInit(): void {
     this.fakeData.getDataTableFake({}).subscribe(rs=>{
       this.data= rs.result;

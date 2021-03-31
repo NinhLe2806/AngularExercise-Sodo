@@ -2,9 +2,8 @@
 <form >
   
   <app-form></app-form>
-  <button class="btn btn-danger" (click)="load()" *ngIf=!isLoad text-align="center">Load</button>
-  <span *ngIf=!isLoad style="padding-left:20px;">You have to Load Data first!!!!!!</span>
-  <button  class="btn btn-success" (load)="onSubmit()" *ngIf=isLoad style="margin-left:10px;">Submit</button>
+
+  <button  class="btn btn-success" (click)="onSubmit()" style="margin-left:10px;">Submit</button>
   
   
 </form>
