@@ -1,0 +1,93 @@
+import {Injectable} from "@angular/core";
+import {Observable, of} from "rxjs";
+import { dataClass } from "./data";
+
+
+export interface api {
+    error?: boolean,
+    count?: number,
+    result?: any
+  }
+  @Injectable({
+    providedIn: 'root'
+  })
+@Injectable({
+ providedIn: 'root'
+})
+export class _fakeDataService {
+
+
+    data: Array<dataClass> = [
+    {
+        id:1,
+        type:"Agents",
+        kind:"Newbie",
+        title:"Astra – Valorant Agent Guide",
+        content:" The 15th Valorant agent, Astra,."
+    },
+    {
+        id:2,
+        type:"Agents",
+        kind:"Pro",
+        title:"Sova – I am the hunter",
+        content:"Main Sova"
+    },
+    {
+        id:3,
+        type:"Maps",
+        kind:"Pro",
+        title:"Icebox",
+        content:"Icebox was released at the beginning of Act III and takes place in a tundra climate. The map has a ton of verticality and angles to cover so it’s the most complex map released yet."
+    },
+    {
+        id:4,
+        type: "Maps",
+        kind:"Newbie",
+        title:"Vandals",
+        content:"Icebox was released at the"
+    },
+    {
+        id:5,
+        type:"Alo",
+        kind:"Newbie",
+        title:"Alo",
+        content:"Ola"
+    }];
+    public getDataTableFake(model: any): Observable<any> {
+        let dataRes: api = {count: 0, error: false};
+        dataRes.result = this.data;
+        if (model.id !== undefined) {
+          dataRes.result = this.data.find(item => item['id'] == model.id);
+        }
+        if (!dataRes.result) {
+          dataRes.count = 0;
+        } else {
+          dataRes.count = dataRes.result.length !== undefined ? dataRes.result.length : 1;
+        }
+        return of(dataRes)
+    }
+    public addData(obj: any) {
+        let dataRes: api = {count: 0, error: false};
+        dataRes.result = this.data;
+        dataRes.count = this.data.length;
+        dataRes.result.push(obj);
+        return of(dataRes)
+    }
+    public updateData(index: any, obj: any) {
+        let dataRes: api = {count: 0, error: false};
+        dataRes.result = this.data;
+        dataRes.count = this.data.length;
+        dataRes.result[index-1] = obj;
+        return of( dataRes)
+    }
+    //   public searchData(keyword:any){
+    //     let dataRes: api = {count: 0, error: false};
+    //     dataRes.result = this.data;
+    //     dataRes.count = this.data.length;
+    //     dataRes.result =dataRes.result.filter((res: any ) => { return (res.name.toLocaleLowerCase().match(keyword))})
+    //     console.log(dataRes)
+    //     return of( dataRes)
+    //   }
+    
+
+}

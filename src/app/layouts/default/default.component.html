@@ -1,0 +1,37 @@
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark" >
+    <div class="col-md-9">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="navbar-brand" routerLink="/home" (click)="turnOffSearch()">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/maps" (click)="turnOffSearch()">Maps</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/agents" (click)="turnOffSearch()">Agents</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/guns" (click)="turnOffSearch()">Guns</a>
+        </li>
+      </ul>
+      
+    </div>
+    <div class="col-md-3">
+      <div class="d-flex justify-content-center h-100">
+        <div class="searchbar">
+          <input #input class="search_input" type="text" name="" placeholder="Search..." (input)="search(input)">
+          <button routerLink="/test">Test</button>
+          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+        </div>
+        <button type="button" routerLink="/actions/add" (click)="turnOffSearch()">Add</button>  
+      </div>
+    </div>
+  </nav>
+  
+  <body> 
+    <app-search *ngIf="isSearch" [msg]="msg"></app-search>
+    
+  </body>
+
+<router-outlet></router-outlet>
