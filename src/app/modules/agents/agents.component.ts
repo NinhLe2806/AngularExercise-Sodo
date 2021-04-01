@@ -1,10 +1,11 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit  ,ElementRef, ViewChild} from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {THIS_EXPR} from '@angular/compiler/src/output/output_ast';
+import {Component, OnInit, ElementRef, ViewChild} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
-import { Observable } from 'rxjs';
-import { _fakeDataService } from 'src/services/_fake-data.service';
-import { filter } from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import {_fakeDataService} from 'src/services/_fake-data.service';
+import {filter} from 'rxjs/operators';
+import {dataClass} from '../../../services/data';
 
 
 @Component({
@@ -13,34 +14,40 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./agents.component.css']
 })
 export class AgentsComponent implements OnInit {
-  
-  data:{id:number,type:string,kind:string,title:string,content:string} []=[];
 
-  
-  constructor(private fakeData : _fakeDataService,
-    private router: Router,
-    private route:ActivatedRoute) {}
-  
-  detail(param:any){ 
-    console.log(param)
-    this.router.navigate(['/agents/agents-guide'],{queryParams:{  id: param}});
-  }  
+  data: Array<dataClass> = [];
 
-  delete(_id:number){
-    const index = this.data.findIndex(data=>data['id']==_id);
-    this.data.splice(index,1);
-    
-  }
+  constructor(private fakeData: _fakeDataService,
+              private router: Router,
+              private route: ActivatedRoute) {
 
-  edit(_id:number){
-    this.router.navigate(['/actions/edit'],{queryParams:{id:_id}});
   }
 
   ngOnInit(): void {
-    
-    this.fakeData.getDataTableFake({}).subscribe(rs=>{
-        this.data= rs.result;
-      
-    })
+    this.fakeData.getDataTableFake({}).subscribe(rs => {
+      this.data = rs.result;
+
+    });
+  }
+
+  detail(param: any) {
+    console.log(param);
+    this.router.navigate(['agents/detail'], {queryParams: {id: param}});
+  }
+
+  delete(index: any) {
+    this.fakeData.deleteData(index);
+
+  }
+
+  edit(_id: any) {
+    this.router.navigate(['agents/edit'], {queryParams: {id: _id}});
+  }
+
+  search(input: any) {
+    console.log(input.value);
+    this.fakeData.searchData(input.value.toLocaleLowerCase()).subscribe(rs => {
+      this.data = rs.result;
+    });
   }
 }

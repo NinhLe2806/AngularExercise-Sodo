@@ -1,35 +1,41 @@
-<div >
-    <div class="row" style="padding-left:5px;">
-        <ng-container>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                      <th scope="col">Type</th>
-                      <th scope="col">Title</th>
-                      <th scope="col">For</th>
-                      <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of data">
-                    <ng-container *ngIf="item.type=='Agents'">
-                        <td>{{item.type}}</td>
-                        <td>{{item.title}}</td>
-                        <td>{{item.kind}}</td>
-                        <td>
-                            <button type="button" class="btn btn-success" (click)="edit(item.id)">Edit</button>
-                            <button type="button" class="btn btn-danger" (click)="delete(item.id)">Delete</button>
-                            <button type="button" class="btn btn-info" (click)="detail(item.id)">Detail</button> 
-                        </td>
-                    </ng-container>
-                    </tr>
-                </tbody>
-
-            </table>
-        </ng-container>
-        
-    </div>
-    
+<div class="row" style="padding: 10px 0px 10px 50px;">
+  <input #searchValue style="height: 35px;;" #input class="search_input" type="text" name="" placeholder="Search..."
+         (input)=search(searchValue)>
+  <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+  <button type="button" class="btn btn-primary" routerLink="/agents/add">Add</button>
 </div>
 
+<div style="margin-left:20px;">
+  <div class="row" style="padding-left:5px;">
+    <ng-container>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th style="width:10%">id</th>
+          <th style="width:10%">Type</th>
+          <th style="width:30%;">Title</th>
+          <th style="width:20%">For</th>
+          <th style="width:20%">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of data">
+            <td>{{item.id}}</td>
+            <td>{{item.type}}</td>
+            <td>{{item.title}}</td>
+            <td>{{item.kind}}</td>
+            <td>
+              <button type="button" class="btn btn-success" (click)="edit(item.id)">Edit</button>
+              <button type="button" class="btn btn-danger" (click)="delete(item.id)">Delete</button>
+              <button type="button" class="btn btn-info" (click)="detail(item.id)">Detail</button>
+            </td>
+        </tr>
+        </tbody>
+
+      </table>
+    </ng-container>
+
+  </div>
+
+</div>
 
