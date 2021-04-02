@@ -9,7 +9,7 @@ import {FormComponent} from '../form/form.component';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.css']
 })
-export class EditComponent implements OnInit, AfterViewInit {
+export class EditComponent implements OnInit,AfterViewInit {
   msg: any;
   @ViewChild(FormComponent, {static: false}) formComponent!: FormComponent;
 
@@ -40,10 +40,9 @@ export class EditComponent implements OnInit, AfterViewInit {
     if (dataForm) {
       this.fakeData.updateData(dataForm).subscribe(rs => {
         if (!rs.error) {
-          // == chuyển trang
           this.router.navigate(['/agents']);
         } else {
-          //Lỗi
+          alert("Something wrong happen")
         }
       });
     }

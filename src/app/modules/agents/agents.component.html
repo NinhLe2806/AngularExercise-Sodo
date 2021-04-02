@@ -1,10 +1,10 @@
-<div class="row" style="padding: 10px 0px 10px 50px;">
-  <input #searchValue style="height: 35px;;" #input class="search_input" type="text" name="" placeholder="Search..."
-         (input)=search(searchValue)>
-  <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
-  <button type="button" class="btn btn-primary" routerLink="/agents/add">Add</button>
+<div class="row">
+  <div class="row input-group col-md-9" style="padding: 10px 0px 10px 50px;">
+    <input #searchValue style="height: 35px;;" #input class="search_input" type="text" name="" placeholder="Search..."
+           (input)=search(searchValue)>
+  </div>
+  <div class="col-md-3" style="padding: 10px 0px 10px 85px;"><button type="button" class="btn btn-primary" routerLink="/agents/add">Add</button></div>
 </div>
-
 <div style="margin-left:20px;">
   <div class="row" style="padding-left:5px;">
     <ng-container>

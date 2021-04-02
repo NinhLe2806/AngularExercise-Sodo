@@ -23,14 +23,14 @@ export class _fakeDataService {
       id: 1,
       type: 'Agents',
       kind: 'Newbie',
-      title: 'Astra – Valorant Agent Guide',
+      title: 'Astra - Valorant Agent Guide',
       content: ' The 15th Valorant agent, Astra,.'
     },
     {
       id: 2,
       type: 'Agents',
       kind: 'Pro',
-      title: 'Sova – I am the hunter',
+      title: 'Sova I am the hunter',
       content: 'Main Sova'
     },
     {

@@ -31,11 +31,10 @@ export class AddComponent implements OnInit {
     if (dataForm) {
       this.fakeData.addData(dataForm).subscribe(rs => {
         if (!rs.error) {
-          // == chuyển trang
-          console.log(rs);
+
           this.router.navigate(['/agents']);
         } else {
-          //Lỗi
+          alert("Something wrong happen")
         }
       });
     }

@@ -27,7 +27,6 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     this.getFormDefault();
-    console.log(this.form.status)
   }
 
 
@@ -35,14 +34,14 @@ export class FormComponent implements OnInit {
     this.form = this.fb.group({
       id: new FormControl(),
       type: new FormControl(this.types[0], [Validators.required]),
-      title: new FormControl('', [Validators.required, ValidationService.textValidate]),
+      title: new FormControl('',  [Validators.required, ValidationService.textValidate]),
       content: new FormControl('', [Validators.required]),
-      kind: new FormControl(''),
+      kind: new FormControl('',[Validators.required]),
     });
   }
 
+
   setFormData(data: dataClass): void {
-    console.log(data);
 
     this.form.get('id')?.setValue(data.id);
     this.form.get('type')?.setValue(data.type);
@@ -54,7 +53,7 @@ export class FormComponent implements OnInit {
   getDataForm(): any {
     // check validate form
     if(this.form.status == 'INVALID'){
-      alert("Your Form is not valid")
+      return
     }else {
       return this.form?.value;
     }
