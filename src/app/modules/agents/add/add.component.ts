@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {FormGroup, FormBuilder} from '@angular/forms';
 import {Router, ActivatedRoute} from '@angular/router';
 import {_fakeDataService} from 'src/services/_fake-data.service';
@@ -9,9 +9,11 @@ import {FormComponent} from '../form/form.component';
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.css']
 })
-export class AddComponent implements OnInit {
+export class AddComponent implements OnInit{
   @ViewChild(FormComponent, {static: false}) formComponent?: FormComponent;
-  isValid =true;
+  isValid = false;
+
+
   constructor(private router: Router,
               private fakeData: _fakeDataService,
   ) {
@@ -20,8 +22,14 @@ export class AddComponent implements OnInit {
 
   ngOnInit(): void {
 
-
   }
+  ngAfterViewInit(){
+    this.formComponent?.form.valueChanges.subscribe(x => {
+      if(this.formComponent?.getValid()==false) this.isValid=false;
+      else this.isValid=true;
+    })
+  }
+
 
 
   onSubmit(): void {
@@ -39,21 +47,6 @@ export class AddComponent implements OnInit {
       });
     }
 
-    // this.fakeData.addData(this.formComponent?.form.value);
-
-
-    // switch (this.formComponent?.form.controls['type'].value.toLowerCase()) {
-    //   case 'agents':
-    //     this.router.navigate(['/agents']);
-    //     break;
-    //   case  'guns':
-    //     this.router.navigate(['/guns']);
-    //     break;
-    //   case 'maps':
-    //     this.router.navigate(['/maps']);
-    //     break;
-    // }
-    // alert('Save new ' + this.formComponent?.form.controls['type'].value + ' blog success');
 
   }
 

@@ -12,7 +12,7 @@ import {FormComponent} from '../form/form.component';
 export class EditComponent implements OnInit,AfterViewInit {
   msg: any;
   @ViewChild(FormComponent, {static: false}) formComponent!: FormComponent;
-
+  isValid=false;
   constructor(private router: Router,
               private fakeData: _fakeDataService,
               private route: ActivatedRoute,
@@ -32,6 +32,10 @@ export class EditComponent implements OnInit,AfterViewInit {
         this.formComponent.setFormData(rs.result);
       });
     }, 0);
+    this.formComponent?.form.valueChanges.subscribe(x => {
+      if(this.formComponent?.getValid()==false) this.isValid=false;
+      else this.isValid=true;
+    })
   }
 
   onSubmit(): void {

@@ -3,6 +3,6 @@
 
     <app-form></app-form>
 
-    <button style="margin-left:520px"  class="btn btn-success" (click)="onSubmit() ">Submit</button>
+    <button style="margin-left:520px"  class="btn btn-success" (click)="onSubmit()" [disabled]="!isValid">Submit</button>
 
   </form>

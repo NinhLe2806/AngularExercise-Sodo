@@ -12,7 +12,6 @@ import {ValidationService} from '../../../../services/validation.service';
 })
 export class FormComponent implements OnInit {
   form!: FormGroup;
-
   types = [
     'Agents',
     'Maps',
@@ -57,6 +56,11 @@ export class FormComponent implements OnInit {
     }else {
       return this.form?.value;
     }
+  }
+
+  getValid():any{
+    if(this.form.status == 'INVALID') { return false; }
+    else {return true};
   }
 
 
